@@ -15,34 +15,35 @@
 #include "definitions.h"
 #include "edgeHierarchyGraph.h"
 
+EdgeHierarchyGraph
+readEdgeHierarchy(string fileName)
+{
+  std::ifstream infile(fileName);
 
-EdgeHierarchyGraph readEdgeHierarchy(string fileName) {
-    std::ifstream infile(fileName);
+  NODE_T numVertices;
+  EDGEID_T numEdges;
+  string line;
 
-    NODE_T numVertices;
-    EDGEID_T numEdges;
-    string line;
+  getline(infile, line);
 
-    getline(infile, line);
+  istringstream iss(line);
 
+  iss >> numVertices >> numEdges;
+
+  EdgeHierarchyGraph g(numVertices);
+
+  while (getline(infile, line)) {
     istringstream iss(line);
-
-    iss >> numVertices >> numEdges;
-
-    EdgeHierarchyGraph g(numVertices);
-
-    while (getline(infile, line)) {
-        istringstream iss(line);
-        NODE_T u, v;
-        EDGEWEIGHT_T weight;
-        EDGERANK_T rank;
-        iss >> u >> v >> weight >> rank;
-        if(!g.hasEdge(u, v)) {
-            g.addEdge(u, v, weight);
-            g.setEdgeRank(u, v, rank);
-        }
+    NODE_T u, v;
+    EDGEWEIGHT_T weight;
+    EDGERANK_T rank;
+    iss >> u >> v >> weight >> rank;
+    if (!g.hasEdge(u, v)) {
+      g.addEdge(u, v, weight);
+      g.setEdgeRank(u, v, rank);
     }
+  }
 
-    infile.close();
-    return g;
+  infile.close();
+  return g;
 }
