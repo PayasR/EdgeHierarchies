@@ -1,9 +1,9 @@
 [submodule "googletest"]
 	path = googletest
-	url = git@github.com:abseil/googletest.git
+	url = https://github.com/abseil/googletest.git
 [submodule "extern/tlx"]
 	path = extern/tlx
-	url = git@github.com:tlx/tlx.git
+	url = https://github.com/tlx/tlx.git
 [submodule "extern/RoutingKit"]
 	path = extern/RoutingKit
-	url = git@github.com:Hespian/RoutingKit.git
+	url = https://github.com/Hespian/RoutingKit.git
